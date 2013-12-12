@@ -10,5 +10,4 @@
 
 @interface UIResponder (WriteableInputView)
 @property (readwrite, strong) UIView *inputView;
-@property (readwrite, strong) UIView *inputAccessoryView;
 @end

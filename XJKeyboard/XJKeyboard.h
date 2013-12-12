@@ -11,7 +11,6 @@
 @interface XJKeyboard : UIView <UIAppearance, UIAppearanceContainer>
 
 @property (nonatomic, weak, readonly) UIResponder<UITextInput> *textInput;
-@property (nonatomic, weak, readonly) UIResponder<UITextInput> *inputAccessoryView;
 @property (nonatomic, weak) UIView *customView;
 
 + (instancetype)keyboard;

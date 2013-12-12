@@ -10,9 +10,9 @@
 #import "UIResponder+WriteableInputView.h"
 #import "XJKeyboardCustomView.h"
 
+
 @interface  XJKeyboard () <UIInputViewAudioFeedback>
 @property (nonatomic, weak, readwrite) UIResponder<UITextInput> *textInput;
-@property (nonatomic, weak, readwrite) UIResponder<UITextInput> *inputAccessoryView;
 @end
 
 @implementation XJKeyboard
@@ -21,6 +21,7 @@
 
 - (void)setInputViewToView:(UIView *)view
 {
+    NSLog(@"setInputViewToView");
     if (self.textInput.isFirstResponder)
     {
         [self.textInput resignFirstResponder];
@@ -35,18 +36,17 @@
 
 - (void)attachToTextInput:(UIResponder<UITextInput> *)textInput
 {
-    if (!self.subviews.count)
-    {
         [self addSubview:self.customView];
         self.bounds = self.customView.frame;
         self.textInput = textInput;
         [self setInputViewToView:self];
-    }
+    
 }
 
-- (void)switchToDefaultKeyboard {
-
-    if (self.subviews.count) [self.customView removeFromSuperview];
+- (void)switchToDefaultKeyboard
+{
+    NSLog(@"switchToDefaultKeyboard");
+    [self.customView removeFromSuperview];
     self.customView = nil;
     [self setInputViewToView:nil];
     self.textInput = nil;
@@ -79,6 +79,7 @@
 
 - (void)showKeyboard
 {
+    NSLog(@"====== %@",self.customKeyboard);
     [self.customKeyboard switchToDefaultKeyboard];
 }
 
@@ -88,6 +89,5 @@
         [keyboard attachToTextInput:(UIResponder<UITextInput> *)self];
     }
 }
-
 
 @end

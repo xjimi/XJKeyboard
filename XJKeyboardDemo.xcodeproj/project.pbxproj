@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3C3517D71859A92B003C63B4 /* XJKeyboardControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3C3517D61859A92B003C63B4 /* XJKeyboardControl.m */; };
 		BA038F86185224B80005C032 /* XJKeyboardCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA038F85185224B80005C032 /* XJKeyboardCustomView.m */; };
 		BA2051AF1851CC37005C25E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2051AE1851CC37005C25E1 /* Foundation.framework */; };
 		BA2051B11851CC37005C25E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2051B01851CC37005C25E1 /* CoreGraphics.framework */; };
@@ -35,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3C3517D51859A92B003C63B4 /* XJKeyboardControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJKeyboardControl.h; sourceTree = "<group>"; };
+		3C3517D61859A92B003C63B4 /* XJKeyboardControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJKeyboardControl.m; sourceTree = "<group>"; };
 		BA038F84185224B80005C032 /* XJKeyboardCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJKeyboardCustomView.h; sourceTree = "<group>"; };
 		BA038F85185224B80005C032 /* XJKeyboardCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJKeyboardCustomView.m; sourceTree = "<group>"; };
 		BA2051AB1851CC36005C25E1 /* XJKeyboardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XJKeyboardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +168,8 @@
 				BA2051E61851CDA6005C25E1 /* XJKeyboard.m */,
 				BA038F84185224B80005C032 /* XJKeyboardCustomView.h */,
 				BA038F85185224B80005C032 /* XJKeyboardCustomView.m */,
+				3C3517D51859A92B003C63B4 /* XJKeyboardControl.h */,
+				3C3517D61859A92B003C63B4 /* XJKeyboardControl.m */,
 			);
 			path = XJKeyboard;
 			sourceTree = SOURCE_ROOT;
@@ -266,6 +271,7 @@
 			files = (
 				BA2051DF1851CCA4005C25E1 /* ViewController.m in Sources */,
 				BA2051BF1851CC37005C25E1 /* AppDelegate.m in Sources */,
+				3C3517D71859A92B003C63B4 /* XJKeyboardControl.m in Sources */,
 				BA2051E71851CDA6005C25E1 /* XJKeyboard.m in Sources */,
 				BA038F86185224B80005C032 /* XJKeyboardCustomView.m in Sources */,
 				BA2051BB1851CC37005C25E1 /* main.m in Sources */,
