@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BA038F86185224B80005C032 /* XJKeyboardCustomView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA038F85185224B80005C032 /* XJKeyboardCustomView.m */; };
 		BA2051AF1851CC37005C25E1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2051AE1851CC37005C25E1 /* Foundation.framework */; };
 		BA2051B11851CC37005C25E1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2051B01851CC37005C25E1 /* CoreGraphics.framework */; };
 		BA2051B31851CC37005C25E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2051B21851CC37005C25E1 /* UIKit.framework */; };
@@ -19,6 +20,8 @@
 		BA2051CA1851CC37005C25E1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA2051B21851CC37005C25E1 /* UIKit.framework */; };
 		BA2051D21851CC37005C25E1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BA2051D01851CC37005C25E1 /* InfoPlist.strings */; };
 		BA2051D41851CC37005C25E1 /* XJKeyboardDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2051D31851CC37005C25E1 /* XJKeyboardDemoTests.m */; };
+		BA2051DF1851CCA4005C25E1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2051DE1851CCA4005C25E1 /* ViewController.m */; };
+		BA2051E71851CDA6005C25E1 /* XJKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2051E61851CDA6005C25E1 /* XJKeyboard.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +35,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BA038F84185224B80005C032 /* XJKeyboardCustomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJKeyboardCustomView.h; sourceTree = "<group>"; };
+		BA038F85185224B80005C032 /* XJKeyboardCustomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJKeyboardCustomView.m; sourceTree = "<group>"; };
 		BA2051AB1851CC36005C25E1 /* XJKeyboardDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XJKeyboardDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA2051AE1851CC37005C25E1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BA2051B01851CC37005C25E1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +53,11 @@
 		BA2051CF1851CC37005C25E1 /* XJKeyboardDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "XJKeyboardDemoTests-Info.plist"; sourceTree = "<group>"; };
 		BA2051D11851CC37005C25E1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BA2051D31851CC37005C25E1 /* XJKeyboardDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJKeyboardDemoTests.m; sourceTree = "<group>"; };
+		BA2051DD1851CCA4005C25E1 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BA2051DE1851CCA4005C25E1 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BA2051E51851CDA6005C25E1 /* XJKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XJKeyboard.h; sourceTree = "<group>"; };
+		BA2051E61851CDA6005C25E1 /* XJKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XJKeyboard.m; sourceTree = "<group>"; };
+		BA2051E81851D83F005C25E1 /* UIResponder+WriteableInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIResponder+WriteableInputView.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +117,11 @@
 		BA2051B41851CC37005C25E1 /* XJKeyboardDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BA2051E41851CD8E005C25E1 /* XJKeyboard */,
 				BA2051BD1851CC37005C25E1 /* AppDelegate.h */,
 				BA2051BE1851CC37005C25E1 /* AppDelegate.m */,
+				BA2051DD1851CCA4005C25E1 /* ViewController.h */,
+				BA2051DE1851CCA4005C25E1 /* ViewController.m */,
 				BA2051C01851CC37005C25E1 /* Images.xcassets */,
 				BA2051B51851CC37005C25E1 /* Supporting Files */,
 			);
@@ -143,6 +156,18 @@
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
+		};
+		BA2051E41851CD8E005C25E1 /* XJKeyboard */ = {
+			isa = PBXGroup;
+			children = (
+				BA2051E81851D83F005C25E1 /* UIResponder+WriteableInputView.h */,
+				BA2051E51851CDA6005C25E1 /* XJKeyboard.h */,
+				BA2051E61851CDA6005C25E1 /* XJKeyboard.m */,
+				BA038F84185224B80005C032 /* XJKeyboardCustomView.h */,
+				BA038F85185224B80005C032 /* XJKeyboardCustomView.m */,
+			);
+			path = XJKeyboard;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
@@ -239,7 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA2051DF1851CCA4005C25E1 /* ViewController.m in Sources */,
 				BA2051BF1851CC37005C25E1 /* AppDelegate.m in Sources */,
+				BA2051E71851CDA6005C25E1 /* XJKeyboard.m in Sources */,
+				BA038F86185224B80005C032 /* XJKeyboardCustomView.m in Sources */,
 				BA2051BB1851CC37005C25E1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -315,7 +343,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -348,7 +376,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -441,6 +469,7 @@
 				BA2051D91851CC37005C25E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BA2051DA1851CC37005C25E1 /* Build configuration list for PBXNativeTarget "XJKeyboardDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -449,6 +478,7 @@
 				BA2051DC1851CC37005C25E1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
