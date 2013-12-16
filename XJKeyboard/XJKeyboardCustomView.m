@@ -17,18 +17,15 @@
     dispatch_once(&onceToken, ^{
         XJKeyboard *keyboard = [XJKeyboard keyboard];
         _sharedKeyboard = keyboard;
-        NSLog(@"======");
     });
 
     if (![_sharedKeyboard.customView isEqual:customView])
     {
+        [_sharedKeyboard.customView removeFromSuperview];
+        _sharedKeyboard.customView = nil;
+        _sharedKeyboard.customView = customView;
     }
-    
-    [_sharedKeyboard.customView removeFromSuperview];
-    _sharedKeyboard.customView = nil;
-    _sharedKeyboard.customView = customView;
 
-    
     return _sharedKeyboard;
 }
 

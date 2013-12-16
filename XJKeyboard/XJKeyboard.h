@@ -18,8 +18,13 @@
 
 @end
 
+
+
 @interface UIResponder (XJKeyboard)
+
 @property (readonly, strong) XJKeyboard *customKeyboard;
+
 - (void)showKeyboard;
 - (void)showCustomView:(UIView *)customView;
+
 @end

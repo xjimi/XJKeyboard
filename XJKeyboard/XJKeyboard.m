@@ -10,7 +10,6 @@
 #import "UIResponder+WriteableInputView.h"
 #import "XJKeyboardCustomView.h"
 
-
 @interface  XJKeyboard () <UIInputViewAudioFeedback>
 @property (nonatomic, weak, readwrite) UIResponder<UITextInput> *textInput;
 @end
@@ -21,7 +20,6 @@
 
 - (void)setInputViewToView:(UIView *)view
 {
-    NSLog(@"setInputViewToView");
     if (self.textInput.isFirstResponder)
     {
         [self.textInput resignFirstResponder];
@@ -36,17 +34,15 @@
 
 - (void)attachToTextInput:(UIResponder<UITextInput> *)textInput
 {
-        [self addSubview:self.customView];
-        self.bounds = self.customView.frame;
-        self.textInput = textInput;
-        [self setInputViewToView:self];
-    
+    [self addSubview:self.customView];
+    self.bounds = self.customView.frame;
+    self.textInput = textInput;
+    [self setInputViewToView:self];
 }
 
 - (void)switchToDefaultKeyboard
 {
-    NSLog(@"switchToDefaultKeyboard");
-    [self.customView removeFromSuperview];
+    if (self.subviews.count) [self.customView removeFromSuperview];
     self.customView = nil;
     [self setInputViewToView:nil];
     self.textInput = nil;
@@ -58,7 +54,6 @@
     return self;
 }
 
-
 + (instancetype)keyboard {
     XJKeyboard *keyboard = [[XJKeyboard alloc] init];
     return keyboard;
@@ -69,8 +64,8 @@
 
 @implementation UIResponder (XJKeyboard)
 
-- (XJKeyboard *)customKeyboard {
-    
+- (XJKeyboard *)customKeyboard
+{
     if ([self.inputView isKindOfClass:[XJKeyboard class]]) {
         return (XJKeyboard *)self.inputView;
     }
@@ -79,7 +74,6 @@
 
 - (void)showKeyboard
 {
-    NSLog(@"====== %@",self.customKeyboard);
     [self.customKeyboard switchToDefaultKeyboard];
 }
 

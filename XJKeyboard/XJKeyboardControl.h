@@ -12,6 +12,10 @@ typedef void (^XJKeyboardDidMoveBlock)(CGRect keyboardFrame);
 
 @interface UIView (XJKeyboardControl)
 
+@property (nonatomic) CGRect keyboardFrame;
+
 - (void)addKeyboardEventActionHandler:(XJKeyboardDidMoveBlock)actionHandler;
 - (void)remove;
+- (void)removeKeyboardEventListener;
+
 @end
