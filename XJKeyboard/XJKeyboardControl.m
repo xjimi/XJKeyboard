@@ -15,7 +15,6 @@ static inline UIViewAnimationOptions AnimationOptionsForCurve(UIViewAnimationCur
 }
 
 static char UIViewKeyboardDidMoveBlock;
-static char UIViewKeyboardFrame;
 
 @interface UIView (XJKeyboardControl_Internal)
 
@@ -25,8 +24,6 @@ static char UIViewKeyboardFrame;
 
 @implementation UIView (XJKeyboardControl)
 
-@dynamic keyboardFrame;
-
 - (void)addKeyboardEventActionHandler:(XJKeyboardDidMoveBlock)actionHandler
 {
     self.keyboardDidMoveBlock = actionHandler;
@@ -35,28 +32,37 @@ static char UIViewKeyboardFrame;
 
 #pragma mark - Keyboard Notifications
 
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    NSLog(@"===== show");
+    [self keyboardWillChangeFrame:notification];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    NSLog(@"hides");
+    [self keyboardWillChangeFrame:notification];
+}
+
 - (void)keyboardWillChangeFrame:(NSNotification *)notification
 {
-    CGRect keyboardEndFrameWindow = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    double keyboardTransitionDuration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    UIViewAnimationCurve keyboardTransitionAnimationCurve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
-    CGRect keyboardEndFrameView = [self convertRect:keyboardEndFrameWindow fromView:nil];
-    self.keyboardFrame = keyboardEndFrameView;
+    CGRect keyboardRect = [notification.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    double duration = [notification.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue];
+    NSInteger curve = [notification.userInfo[UIKeyboardAnimationCurveUserInfoKey] integerValue];
+    CGRect keyboardEndFrameView = [self convertRect:keyboardRect fromView:nil];
+    
     __weak typeof(self) weakSelf = self;
-    [UIView animateWithDuration:keyboardTransitionDuration delay:0.0f options:AnimationOptionsForCurve(keyboardTransitionAnimationCurve) animations:^{
+    [UIView animateWithDuration:duration delay:0.0f options:AnimationOptionsForCurve(curve) animations:^{
         
         if (weakSelf.keyboardDidMoveBlock && !CGRectIsNull(keyboardEndFrameView)) {
-            //weakSelf.keyboardF = keyboardEndFrameView;
             weakSelf.keyboardDidMoveBlock(keyboardEndFrameView);
         }
         
-    } completion:^(BOOL finished) {
-        
-    }];
+    } completion:nil];
 }
 
 
-- (void)remove
+- (void)removeKeyboard
 {
     [self removeKeyboardEventListener];
     self.keyboardDidMoveBlock = nil;
@@ -64,7 +70,9 @@ static char UIViewKeyboardFrame;
 
 - (void)addKeyboardEventListener
 {
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillChangeFrame:) name:UIKeyboardWillChangeFrameNotification object:nil];
 }
 
 - (void)removeKeyboardEventListener
@@ -87,22 +95,5 @@ static char UIViewKeyboardFrame;
     [self didChangeValueForKey:@"keyboardDidMoveBlock"];
 }
 
-- (CGRect)keyboardFrame
-{
-    id previousRectValue = objc_getAssociatedObject(self, &UIViewKeyboardFrame);
-    if (previousRectValue) {
-        return [previousRectValue CGRectValue];
-    }
-    return CGRectZero;
-}
-
-- (void)setKeyboardFrame:(CGRect)keyboardFrame {
-    [self willChangeValueForKey:@"keyboardFrame"];
-    objc_setAssociatedObject(self,
-                             &UIViewKeyboardFrame,
-                             [NSValue valueWithCGRect:keyboardFrame],
-                             OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-    [self didChangeValueForKey:@"keyboardFrame"];
-}
 
 @end

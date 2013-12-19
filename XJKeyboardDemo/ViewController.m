@@ -11,6 +11,11 @@
 #import "XJKeyboardCustomView.h"
 #import "XJKeyboardControl.h"
 
+static inline UIViewAnimationOptions AnimationOptionsForCurve(UIViewAnimationCurve curve)
+{
+	return (curve << 16 | UIViewAnimationOptionBeginFromCurrentState);
+}
+
 @interface ViewController ()
 {
     UITextView *_textView;
@@ -47,7 +52,7 @@
     [switchKeyboard addTarget:self action:@selector(switchKeyboard) forControlEvents:UIControlEventTouchUpInside];
     [switchKeyboard setTitle:@"switch" forState:UIControlStateNormal];
     [switchKeyboard setBackgroundColor:[UIColor darkGrayColor]];
-    [self.view addSubview:switchKeyboard];
+    [self.accessoryView addSubview:switchKeyboard];
     
     UIButton *switchRedboard = [[UIButton alloc] initWithFrame:CGRectMake(74.0f, 7.0f, 60.0f, 30.0f)];
     [switchRedboard.titleLabel setFont:[UIFont systemFontOfSize:12.0f]];
@@ -59,18 +64,10 @@
     __weak typeof(self) weakSelf = self;
     [self.view addKeyboardEventActionHandler:^(CGRect keyboardFrame) {
 
-        NSLog(@"changesssssdddd");
-        /*
         CGRect accessoryViewFrame = weakSelf.accessoryView.frame;
-        accessoryViewFrame.origin.y = weakSelf.view.keyboardF.origin.y - accessoryViewFrame.size.height;
+        accessoryViewFrame.origin.y = keyboardFrame.origin.y - accessoryViewFrame.size.height;
         weakSelf.accessoryView.frame = accessoryViewFrame;
-        */
-        
-        CGRect switchKeyboardFrame = weakSelf.view.keyboardFrame;
-        switchKeyboardFrame.origin.y = 220.0f;
-        switchKeyboard.frame = switchKeyboardFrame;
-
-        
+    
     }];
     
     customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 216.0f)];
@@ -88,8 +85,6 @@
 
 - (void)switchKeyboard
 {
-    NSLog(@"switch");
-    
     if (_textView.isFirstResponder) {
         if (_textView.customKeyboard) [_textView showKeyboard];
         else [_textView showCustomView:[XJKeyboardCustomView sharedCustomView:customView_Redboard]];
@@ -99,11 +94,11 @@
         [_textView showKeyboard];
         [_textView becomeFirstResponder];
     }
-    
 }
 
 - (void)switchRedboard
 {
+    /*
     NSLog(@"down");
     if (_textView.isFirstResponder) {
         if (_textView.customKeyboard) [_textView showKeyboard];
@@ -114,8 +109,14 @@
         [_textView showKeyboard];
         [_textView becomeFirstResponder];
     }
-
-    //[_textView resignFirstResponder];
+     */
+    [_textView resignFirstResponder];
     //[_textView showCustomView:[XJKeyboardCustomView sharedCustomView:customView_Redboard]];
 }
+
+- (void)dealloc
+{
+    [self.view removeKeyboard];
+}
+
 @end

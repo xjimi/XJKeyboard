@@ -17,7 +17,6 @@
 @implementation XJKeyboard
 
 #pragma mark - TextInput
-
 - (void)setInputViewToView:(UIView *)view
 {
     if (self.textInput.isFirstResponder)
@@ -60,7 +59,6 @@
 }
 
 @end
-
 
 @implementation UIResponder (XJKeyboard)
 
