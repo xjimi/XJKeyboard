@@ -163,13 +163,13 @@
 		BA2051E41851CD8E005C25E1 /* XJKeyboard */ = {
 			isa = PBXGroup;
 			children = (
-				3C3517D51859A92B003C63B4 /* XJKeyboardControl.h */,
-				3C3517D61859A92B003C63B4 /* XJKeyboardControl.m */,
-				BA2051E81851D83F005C25E1 /* UIResponder+WriteableInputView.h */,
 				BA2051E51851CDA6005C25E1 /* XJKeyboard.h */,
 				BA2051E61851CDA6005C25E1 /* XJKeyboard.m */,
+				3C3517D51859A92B003C63B4 /* XJKeyboardControl.h */,
+				3C3517D61859A92B003C63B4 /* XJKeyboardControl.m */,
 				BA038F84185224B80005C032 /* XJKeyboardCustomView.h */,
 				BA038F85185224B80005C032 /* XJKeyboardCustomView.m */,
+				BA2051E81851D83F005C25E1 /* UIResponder+WriteableInputView.h */,
 			);
 			path = XJKeyboard;
 			sourceTree = SOURCE_ROOT;

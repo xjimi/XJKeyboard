@@ -7,21 +7,12 @@
 //
 
 #import "ViewController.h"
-#import "XJKeyboard.h"
-#import "XJKeyboardCustomView.h"
 #import "XJKeyboardControl.h"
-
-static inline UIViewAnimationOptions AnimationOptionsForCurve(UIViewAnimationCurve curve)
-{
-	return (curve << 16 | UIViewAnimationOptionBeginFromCurrentState);
-}
 
 @interface ViewController ()
 {
-    UITextView *_textView;
     UIView *customView;
     UIView *customView_Redboard;
-    
 }
 
 @property (nonatomic, strong) UIView *accessoryView;
@@ -38,7 +29,6 @@ static inline UIViewAnimationOptions AnimationOptionsForCurve(UIViewAnimationCur
     [textView setReturnKeyType:UIReturnKeyDone];
     [textView setFont:[UIFont systemFontOfSize:16.0f]];
     [self.view addSubview:textView];
-    _textView = textView;
     
     CGFloat viewW = CGRectGetWidth(self.view.frame);
     CGFloat viewH = CGRectGetHeight(self.view.frame);
@@ -61,57 +51,29 @@ static inline UIViewAnimationOptions AnimationOptionsForCurve(UIViewAnimationCur
     [switchRedboard setBackgroundColor:[UIColor darkGrayColor]];
     [self.accessoryView addSubview:switchRedboard];
     
+    customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 216.0f)];
+    customView.backgroundColor = [UIColor blackColor];
+    
+    customView_Redboard = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216.0f)];
+    customView_Redboard.backgroundColor = [UIColor redColor];
+    
     __weak typeof(self) weakSelf = self;
-    [self.view addKeyboardEventActionHandler:^(CGRect keyboardFrame) {
+    [self.view addKeyboardResponder:textView withActionHandler:^(CGRect keyboardFrame) {
 
         CGRect accessoryViewFrame = weakSelf.accessoryView.frame;
         accessoryViewFrame.origin.y = keyboardFrame.origin.y - accessoryViewFrame.size.height;
         weakSelf.accessoryView.frame = accessoryViewFrame;
     
     }];
-    
-    customView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 216.0f)];
-    customView.backgroundColor = [UIColor blackColor];
-    
-    customView_Redboard = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 216.0f)];
-    customView_Redboard.backgroundColor = [UIColor redColor];
-
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [_textView becomeFirstResponder];
+- (void)switchKeyboard {
+    [self.view switchKeyboardOrCustomView:customView_Redboard];
 }
 
-- (void)switchKeyboard
-{
-    if (_textView.isFirstResponder) {
-        if (_textView.customKeyboard) [_textView showKeyboard];
-        else [_textView showCustomView:[XJKeyboardCustomView sharedCustomView:customView_Redboard]];
-
-    }else{
-
-        [_textView showKeyboard];
-        [_textView becomeFirstResponder];
-    }
-}
-
-- (void)switchRedboard
-{
-    /*
-    NSLog(@"down");
-    if (_textView.isFirstResponder) {
-        if (_textView.customKeyboard) [_textView showKeyboard];
-        else [_textView showCustomView:[XJKeyboardCustomView sharedCustomView:customView_Redboard]];
-        
-    }else{
-        
-        [_textView showKeyboard];
-        [_textView becomeFirstResponder];
-    }
-     */
-    [_textView resignFirstResponder];
-    //[_textView showCustomView:[XJKeyboardCustomView sharedCustomView:customView_Redboard]];
+- (void)switchRedboard {
+    [self.view showCustomView:customView];
+    //[self.view hideKeyboard];
 }
 
 - (void)dealloc

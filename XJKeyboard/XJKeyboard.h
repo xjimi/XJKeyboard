@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-@interface XJKeyboard : UIView <UIAppearance, UIAppearanceContainer>
 
+@interface XJKeyboard : UIView <UIAppearance, UIAppearanceContainer>
 
 @property (nonatomic, weak, readonly) UIResponder<UITextInput> *textInput;
 @property (nonatomic, weak) UIView *customView;
@@ -19,12 +19,11 @@
 @end
 
 
-
 @interface UIResponder (XJKeyboard)
 
 @property (readonly, strong) XJKeyboard *customKeyboard;
 
-- (void)showKeyboard;
-- (void)showCustomView:(UIView *)customView;
+- (void)switchToKeyboard;
+- (void)switchToCustomView:(UIView *)customView;
 
 @end

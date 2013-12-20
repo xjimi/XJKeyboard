@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIResponder (WriteableInputView)
-@property (readwrite, retain) UIView *inputView;
+@property (readwrite, strong) UIView *inputView;
 @end

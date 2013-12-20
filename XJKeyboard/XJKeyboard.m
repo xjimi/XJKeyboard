@@ -70,12 +70,12 @@
     return nil;
 }
 
-- (void)showKeyboard
+- (void)switchToKeyboard
 {
     [self.customKeyboard switchToDefaultKeyboard];
 }
 
-- (void)showCustomView:(XJKeyboard *)keyboard
+- (void)switchToCustomView:(XJKeyboard *)keyboard
 {
     if ([self conformsToProtocol:@protocol(UITextInput)] && [self respondsToSelector:@selector(setInputView:)]) {
         [keyboard attachToTextInput:(UIResponder<UITextInput> *)self];
